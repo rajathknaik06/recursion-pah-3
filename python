@@ -1,0 +1,46 @@
+""" David is developing a program to calculate the sum of the digits of a given integer and determine if this sum is a prime number or not. 
+
+
+
+Your task is to assist him in creating a program that fulfills this objective.
+
+Input format :
+The input consists of a single integer n.
+
+Output format :
+If the sum of the digits is not a prime number, it outputs: "Sum of digits: {sum} is not a prime number.".
+
+If the sum of the digits is a prime number, it outputs: "Sum of digits: {sum} is a prime number.".
+
+"""
+
+def sum_of_digits(n):
+    digit_sum = 0
+    while n > 0:
+        digit_sum += n % 10
+        n //= 10
+    return digit_sum
+
+def is_prime(n):
+    if n <= 1:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    for i in range(3, int(n**0.5) + 1, 2):
+        if n % i == 0:
+            return False
+    return True
+
+def check_sum_of_digits_prime(number):
+    digit_sum = sum_of_digits(number)
+    if is_prime(digit_sum):
+        return f"Sum of digits: {digit_sum} is a prime number."
+    else:
+        return f"Sum of digits: {digit_sum} is not a prime number."
+
+if __name__ == "__main__":
+    number = int(input())
+    result = check_sum_of_digits_prime(number)
+    print(result)
